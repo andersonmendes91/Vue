@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Eventos</title>
+    <link rel="stylesheet" href="/css/estilo.css">
+    <script src="/js/vue.min.js"></script>
+</head>
+<body class="exercicio">
+        <div id="app">
+
+            <h1>Calcular</h1>
+            Valor 1:
+            <input type="number" placeholder="digite um valor" id="n1">
+            <br>   
+            Valor 2:
+            <input type="number" placeholder="digite um valor" id="n2">
+            <br>
+            <br>
+            <button @click="calcular" >Calcular</button><br>
+            <p>{{soma}}</p>
+            
+           
+
+            <h1>Eventos 2</h1>
+            <p>{{contador}}</p>
+
+            <p> 
+                <button @click="add">+1</button>
+                <button @click="contador -=2">-2</button>
+
+            </p>
+
+            <h1> Posição do Mouse</h1>
+
+            <p @mousemove="atualizarPosicao">
+                Coordenadas: {{x}} e {{y}}
+                <br>
+                <br>
+                <span @mousemove.stop>Aqui NÂO!</span>
+            </p>
+
+            <h1>Evento do teclado</h1>
+            <input type ="text" @keyup.enter="alerta"><br>
+        </div>
+    <script>
+        new Vue ({
+            el: "#app",
+            data: {
+                contador: 0,
+                soma: 0,
+                x: 0,
+                y: 0
+            },
+
+            methods: {
+                add(){
+                    this.contador++;
+                },
+
+                calcular(){
+                    let num1 = document.getElementById('n1').value;
+                    let num2 = document.getElementById('n2').value;
+                   
+                    let n1 = parseInt(num1);
+                    let n2 = parseInt(num2);
+
+                  this.soma = n1 + n2;
+                  
+
+                   return this.soma
+
+
+                },
+
+                atualizarPosicao(e){
+                    this.x = e.clientX;
+                    this.y = e.clientY;
+                },
+
+                alerta(){
+                    alert('Enter')
+                }
+            }
+        })
+    </script>
+</body>
+</html>
